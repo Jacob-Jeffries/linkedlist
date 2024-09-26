@@ -24,7 +24,7 @@ public class LinkTest {
   public void testConstructor(){
     assertNull(aLink.getAfter());
     assertNull(aLink.getBefore());
-    assertTrue("ocarina", aLink.getItem());
+    assertEquals("ocarina", aLink.getItem());
   }
 
   @Test
@@ -35,7 +35,7 @@ public class LinkTest {
     assertEquals(otherLink, aLink.getAfter());
     assertNull(aLink.getBefore());
     assertEquals("ocarina", aLink.getItem());
-    assertnull(otherLink.getAfter());
+    assertNull(otherLink.getAfter());
     assertEquals(aLink, otherLink.getBefore());
     assertEquals("shield", otherLink.getItem());
   }
