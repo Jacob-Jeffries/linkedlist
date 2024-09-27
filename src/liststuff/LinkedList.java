@@ -5,51 +5,40 @@ public class LinkedList {
   private Link last;
 
   public boolean isEmpty(){
-    return ((this.first == null) || (this.last == null));
+    return ((this.first == null) && (this.last == null));
   }
 
   public int size(){
-
+    if(this.isEmpty()){
+      return 0;
+    }
     Link aLink = this.first;
     int count = 0;
-
-    if (this.isEmpty()){
-      return 0;
-    } else if (this.first == this.last){
-      return 1;
-    } else {
-      while(aLink != null){
-        ++count;
-        aLink = aLink.getAfter();
-      }
-      return count;
+    while(aLink != null){
+      ++count;
+      aLink = aLink.getAfter();
     }
+    return count;
   }
 
   public String get(int index){
-
-    if (index < 0 || index > (this.size()-1)){
+    if (index < 0 || index > (this.size()-1) || this.isEmpty()){
       return null;
-    } else if (this.isEmpty()){
-      return null;
-    } else if (this.first == this.last){
-      return this.first.getItem();
-    } else {
-      Link aLink = this.first;
-      int count = 0;
-      while(count < index && aLink != null){
-        aLink = aLink.getAfter();
-        ++count;
-      }
-      return aLink.getItem();
     }
+    Link aLink = this.first;
+    int count = 0;
+    while(count < index && aLink != null){
+      aLink = aLink.getAfter();
+      ++count;
+    }
+    return aLink.getItem();
   }
 
   public void addFirst(String anItem){
     Link oldFirstLink = this.first;
     Link aLink = new Link(anItem);
     this.first = aLink;
-    if (!this.isEmpty()){
+    if (this.last != null){
       aLink.setAfter(oldFirstLink);
       oldFirstLink.setBefore(aLink);
     }else {
@@ -62,7 +51,7 @@ public class LinkedList {
     Link oldLastLink = this.last;
     Link aLink = new Link(anItem);
     this.last = aLink;
-    if(!this.isEmpty()){
+    if(this.first != null){
       aLink.setBefore(oldLastLink);
       oldLastLink.setAfter(aLink);
     } else {
@@ -72,14 +61,14 @@ public class LinkedList {
   }
 
   public String removeFirst(){
-    Link oldFirstLink = this.first;
-    if(this.isEmpty()){
+    if (this.isEmpty()){
       return null;
-    } else if(this.size() == 1){
-      this.first = null;
+    }
+    Link oldFirstLink = this.first;
+    this.first = oldFirstLink.getAfter();
+    if(this.first == null){
       this.last = null;
     } else {
-      this.first = oldFirstLink.getAfter();
       this.first.setBefore(null);
       oldFirstLink.setAfter(null);
     }
@@ -87,14 +76,14 @@ public class LinkedList {
   }
 
   public String removeLast(){
-    Link oldLastLink = this.last;
     if(this.isEmpty()){
       return null;
-    } else if(this.size() == 1 ){
+    }
+    Link oldLastLink = this.last;
+    this.last = oldLastLink.getBefore();
+    if(this.last == null){
       this.first = null;
-      this.last = null;
     } else {
-      this.last = oldLastLink.getBefore();
       this.last.setAfter(null);
       oldLastLink.setBefore(null);
     }

@@ -125,38 +125,50 @@ public class LinkedListTest {
   // EC write a test for add(int index, String item)
   @Test
   public void testAdd(){
-    aList.addLast("do");
+    // do
     aList.addLast("re");
-    aList.addLast("fa");
+    // mi
+    aList.addLast("la");
+    aList.addLast("ti");
+    // do
 
-    //Test for adding at index: 0 - addFirst("ti")
+    //Test for adding at index: 0 - addFirst("do")
+    String result = aList.add(0,"do");
+    assertTrue(result);
+    assertEquals(4, aList.size());
+    aseertEquals("do", aList.get(0));
+    assertEquals("re", aList.get(1));
 
-    result = aList.add(3, "mi");
+    result = aList.add(2, "mi");
     assertTrue(result);
     assertEquals(5, aList.size());
-    assertEquals("re", aList.get(2));
-    assertEquals("mi", aList.get(3));
-    assertEquals("fa", aList.get(4));
+    assertEquals("re", aList.get(1));
+    assertEquals("mi", aList.get(2));
+    assertEquals("la", aList.get(3));
 
-    //Test for adding at index:6 - addLast("so")
+    //Test for adding at index:6 - addLast("do")
+    String result = aList.add(5, "do");
+    assertTrue(result);
 
     result = aList.add(-1, "oops");
     assertFalse(result);
-    assertEquals(5, aList.size());
+    assertEquals(6, aList.size());
     assertEquals("do", aList.get(0));
-    assertEquals("do-ey", aList.get(1));
-    assertEquals("re", aList.get(2));
-    assertEquals("mi", aList.get(3));
-    assertEquals("fa", aList.get(4));
+    assertEquals("re", aList.get(1));
+    assertEquals("mi", aList.get(2));
+    assertEquals("la", aList.get(3));
+    assertEquals("ti", aList.get(4));
+    assertEquals("do", aList.get(5));
 
     result = aList.add(10, "oops");
     assertFalse(result);
-    assertEquals(5, aList.size());
+    assertEquals(6, aList.size());
     assertEquals("do", aList.get(0));
-    assertEquals("do-ey", aList.get(1));
-    assertEquals("re", aList.get(2));
-    assertEquals("mi", aList.get(3));
-    assertEquals("fa", aList.get(4));
+    assertEquals("re", aList.get(1));
+    assertEquals("mi", aList.get(2));
+    assertEquals("la", aList.get(3));
+    assertEquals("ti", aList.get(4));
+    assertEquals("do", aList.get(5));
   }
 
   // EC write a test for remove(int index)
