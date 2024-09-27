@@ -70,7 +70,7 @@ public class LinkedListTest {
     assertEquals("mi", aList.get(2));
   }
 
-  @Test // Happy Test Path -> when not stupid things happen how does it behave?
+  @Test
   public void testRemoveFirst() {
     aList.addLast("do");
     aList.addLast("re");
@@ -117,7 +117,7 @@ public class LinkedListTest {
 
     note = aList.removeLast();
     assertEquals("do", note);
-    assertFalse(aList.isEmpty());
+    assertTrue(aList.isEmpty());
     assertEquals(0, aList.size());
     assertNull(aList.get(0));
   }
