@@ -123,6 +123,42 @@ public class LinkedListTest {
   }
 
   // EC write a test for add(int index, String item)
+  @Test
+  public void testAdd(){
+    aList.addLast("do");
+    aList.addLast("re");
+    aList.addLast("fa");
+
+    //Test for adding at index: 0 - addFirst("ti")
+
+    result = aList.add(3, "mi");
+    assertTrue(result);
+    assertEquals(5, aList.size());
+    assertEquals("re", aList.get(2));
+    assertEquals("mi", aList.get(3));
+    assertEquals("fa", aList.get(4));
+
+    //Test for adding at index:6 - addLast("so")
+
+    result = aList.add(-1, "oops");
+    assertFalse(result);
+    assertEquals(5, aList.size());
+    assertEquals("do", aList.get(0));
+    assertEquals("do-ey", aList.get(1));
+    assertEquals("re", aList.get(2));
+    assertEquals("mi", aList.get(3));
+    assertEquals("fa", aList.get(4));
+
+    result = aList.add(10, "oops");
+    assertFalse(result);
+    assertEquals(5, aList.size());
+    assertEquals("do", aList.get(0));
+    assertEquals("do-ey", aList.get(1));
+    assertEquals("re", aList.get(2));
+    assertEquals("mi", aList.get(3));
+    assertEquals("fa", aList.get(4));
+  }
+
   // EC write a test for remove(int index)
 
   // Edge Case Tests
