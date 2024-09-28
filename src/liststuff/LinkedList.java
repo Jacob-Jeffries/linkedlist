@@ -59,8 +59,8 @@ public class LinkedList {
     if (head == null) {
       return 0;
     }
-    // It took a second to understand what this was returning:
-    // (1 + (1 + (1+(0)))
+    // It took a second to understand how to return this:
+    // (1 + (1 + (1 + (0)))
     return 1 + this.size(head.getAfter());
   }
 
