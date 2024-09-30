@@ -26,7 +26,7 @@ public class LinkedListTest {
     assertTrue(aList.isEmpty());
     assertNull(aList.getFirst());
     assertNull(aList.getLast());
-    assertEquals(0, aList.size(aList.getFirst()));
+    assertEquals(0, aList.sizeRecursive(aList.getFirst()));
     assertNull(aList.get(0));
   }
 
@@ -34,18 +34,18 @@ public class LinkedListTest {
   public void testAddFirst() {
     aList.addFirst("mi");
     assertFalse(aList.isEmpty());
-    assertEquals(1, aList.size(aList.getFirst()));
+    assertEquals(1, aList.sizeRecursive(aList.getFirst()));
     assertEquals("mi", aList.get(0));
 
     aList.addFirst("re");
     assertFalse(aList.isEmpty());
-    assertEquals(2, aList.size(aList.getFirst()));
+    assertEquals(2, aList.sizeRecursive(aList.getFirst()));
     assertEquals("re", aList.get(0));
     assertEquals("mi", aList.get(1));
 
     aList.addFirst("do");
     assertFalse(aList.isEmpty());
-    assertEquals(3, aList.size(aList.getFirst()));
+    assertEquals(3, aList.sizeRecursive(aList.getFirst()));
     assertEquals("do", aList.get(0));
     assertEquals("re", aList.get(1));
     assertEquals("mi", aList.get(2));
@@ -55,18 +55,18 @@ public class LinkedListTest {
   public void testAddLast() {
     aList.addLast("do");
     assertFalse(aList.isEmpty());
-    assertEquals(1, aList.size(aList.getFirst()));
+    assertEquals(1, aList.sizeRecursive(aList.getFirst()));
     assertEquals("do", aList.get(0));
 
     aList.addLast("re");
     assertFalse(aList.isEmpty());
-    assertEquals(2, aList.size(aList.getFirst()));
+    assertEquals(2, aList.sizeRecursive(aList.getFirst()));
     assertEquals("do", aList.get(0));
     assertEquals("re", aList.get(1));
 
     aList.addLast("mi");
     assertFalse(aList.isEmpty());
-    assertEquals(3, aList.size(aList.getFirst()));
+    assertEquals(3, aList.sizeRecursive(aList.getFirst()));
     assertEquals("do", aList.get(0));
     assertEquals("re", aList.get(1));
     assertEquals("mi", aList.get(2));
@@ -81,20 +81,20 @@ public class LinkedListTest {
     String note = aList.removeFirst();
     assertEquals("do", note);
     assertFalse(aList.isEmpty());
-    assertEquals(2, aList.size(aList.getFirst()));
+    assertEquals(2, aList.sizeRecursive(aList.getFirst()));
     assertEquals("re", aList.get(0));
     assertEquals("mi", aList.get(1));
 
     note = aList.removeFirst();
     assertEquals("re", note);
     assertFalse(aList.isEmpty());
-    assertEquals(1, aList.size(aList.getFirst()));
+    assertEquals(1, aList.sizeRecursive(aList.getFirst()));
     assertEquals("mi", aList.get(0));
 
     note = aList.removeFirst();
     assertEquals("mi", note);
     assertTrue(aList.isEmpty());
-    assertEquals(0, aList.size(aList.getFirst()));
+    assertEquals(0, aList.sizeRecursive(aList.getFirst()));
     assertNull(aList.get(0));
   }
 
@@ -107,20 +107,20 @@ public class LinkedListTest {
     String note = aList.removeLast();
     assertEquals("mi", note);
     assertFalse(aList.isEmpty());
-    assertEquals(2, aList.size(aList.getFirst()));
+    assertEquals(2, aList.sizeRecursive(aList.getFirst()));
     assertEquals("do", aList.get(0));
     assertEquals("re", aList.get(1));
 
     note = aList.removeLast();
     assertEquals("re", note);
     assertFalse(aList.isEmpty());
-    assertEquals(1, aList.size(aList.getFirst()));
+    assertEquals(1, aList.sizeRecursive(aList.getFirst()));
     assertEquals("do", aList.get(0));
 
     note = aList.removeLast();
     assertEquals("do", note);
     assertTrue(aList.isEmpty());
-    assertEquals(0, aList.size(aList.getFirst()));
+    assertEquals(0, aList.sizeRecursive(aList.getFirst()));
     assertNull(aList.get(0));
   }
 
@@ -137,13 +137,13 @@ public class LinkedListTest {
     //Test for adding at index: 0 - addFirst("do")
     String result = aList.add(0,"do");
     assertEquals("do", result);
-    assertEquals(4, aList.size(aList.getFirst()));
+    assertEquals(4, aList.sizeRecursive(aList.getFirst()));
     assertEquals("do", aList.get(0));
     assertEquals("re", aList.get(1));
 
     result = aList.add(2, "mi");
     assertEquals("mi", result);
-    assertEquals(5, aList.size(aList.getFirst()));
+    assertEquals(5, aList.sizeRecursive(aList.getFirst()));
     assertEquals("re", aList.get(1));
     assertEquals("mi", aList.get(2));
     assertEquals("la", aList.get(3));
@@ -151,7 +151,7 @@ public class LinkedListTest {
     //Test for adding at index:6 - addLast("do")
     result = aList.add(5, "do");
     assertEquals("do", result);
-    assertEquals(6, aList.size(aList.getFirst()));
+    assertEquals(6, aList.sizeRecursive(aList.getFirst()));
     assertEquals("do", aList.get(0));
     assertEquals("re", aList.get(1));
     assertEquals("mi", aList.get(2));
@@ -161,7 +161,7 @@ public class LinkedListTest {
 
     result = aList.add(-1, "oops");
     assertNull(result);
-    assertEquals(6, aList.size(aList.getFirst()));
+    assertEquals(6, aList.sizeRecursive(aList.getFirst()));
     assertEquals("do", aList.get(0));
     assertEquals("re", aList.get(1));
     assertEquals("mi", aList.get(2));
@@ -171,7 +171,7 @@ public class LinkedListTest {
 
     result = aList.add(10, "oops");
     assertNull(result);
-    assertEquals(6, aList.size(aList.getFirst()));
+    assertEquals(6, aList.sizeRecursive(aList.getFirst()));
     assertEquals("do", aList.get(0));
     assertEquals("re", aList.get(1));
     assertEquals("mi", aList.get(2));
@@ -193,7 +193,7 @@ public class LinkedListTest {
     String result = aList.remove(0);
     assertEquals("do",result);
     assertEquals("re", aList.get(0));
-    assertEquals(5, aList.size(aList.getFirst()));
+    assertEquals(5, aList.sizeRecursive(aList.getFirst()));
     assertEquals("re", aList.get(0));
     assertEquals("mi", aList.get(1));
     assertEquals("la", aList.get(2));
@@ -202,7 +202,7 @@ public class LinkedListTest {
 
     result = aList.remove(4);
     assertEquals("do", result);
-    assertEquals(4, aList.size(aList.getFirst()));
+    assertEquals(4, aList.sizeRecursive(aList.getFirst()));
     assertEquals("re", aList.get(0));
     assertEquals("mi", aList.get(1));
     assertEquals("la", aList.get(2));
@@ -210,7 +210,7 @@ public class LinkedListTest {
 
     result = aList.remove(2);
     assertEquals("la", result);
-    assertEquals(3, aList.size(aList.getFirst()));
+    assertEquals(3, aList.sizeRecursive(aList.getFirst()));
     assertEquals("re", aList.get(0));
     assertEquals("mi", aList.get(1));
     assertEquals("ti", aList.get(2));

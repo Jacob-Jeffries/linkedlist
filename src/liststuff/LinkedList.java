@@ -5,7 +5,7 @@ public class LinkedList {
   private Link last;
 
   /**
-   * Getter - added to facilitate the recursive size().
+   * Getter - added to facilitate the recursive sizeRecursive().
    *
    * @return
    */
@@ -14,7 +14,7 @@ public class LinkedList {
   }
 
   /**
-   * Getter - added to facilitate the recursive size().
+   * Getter - added to facilitate the recursive sizeRecursive().
    *
    * @return
    */
@@ -27,33 +27,33 @@ public class LinkedList {
   }
 
   /**
-   * Iterative size method.
+   * Iterative sizeRecursive method.
    *
    * @return
    *         It returns an int.
    */
-  // public int size(){
-  // if(this.isEmpty()){
-  // return 0;
-  // }
-  // Link aLink = this.first;
-  // int count = 0;
-  // while(aLink != null){
-  // ++count;
-  // aLink = aLink.getAfter();
-  // }
-  // return count;
-  // }
+  public int sizeIterative(){
+  if(this.isEmpty()){
+  return 0;
+  }
+  Link aLink = this.first;
+  int count = 0;
+  while(aLink != null){
+  ++count;
+  aLink = aLink.getAfter();
+  }
+  return count;
+  }
 
   /**
-   * Recursive size method.
+   * Recursive sizeRecursive method.
    *
    * @param aLink
    *              This is the first link in the linked list.
    * @return
    *         It return an int.
    */
-  public int size(Link aLink) {
+  public int sizeRecursive(Link aLink) {
     Link head = aLink;
 
     if (head == null) {
@@ -61,11 +61,11 @@ public class LinkedList {
     }
     // It took a second to understand how to return this:
     // (1 + (1 + (1 + (0)))
-    return 1 + this.size(head.getAfter());
+    return 1 + this.sizeRecursive(head.getAfter());
   }
 
   public String get(int index) {
-    if (index < 0 || index > (this.size(this.getFirst()) - 1) || this.isEmpty()) {
+    if (index < 0 || index > (this.sizeRecursive(this.getFirst()) - 1) || this.isEmpty()) {
       return null;
     }
     Link aLink = this.first;
@@ -78,7 +78,7 @@ public class LinkedList {
   }
 
   public Link getLink(int index){
-    if (index < 0 || index > (this.size(this.getFirst()) - 1) || this.isEmpty()) {
+    if (index < 0 || index > (this.sizeRecursive(this.getFirst()) - 1) || this.isEmpty()) {
       return null;
     }
     Link aLink = this.first;
@@ -118,12 +118,12 @@ public class LinkedList {
 
   public String add(int anIndex, String anItem){
     Link aLink = new Link(anItem);
-    if (anIndex < 0 || anIndex > this.size(first)){
+    if (anIndex < 0 || anIndex > this.sizeRecursive(first)){
       return null;
     } else if (anIndex == 0){
       this.addFirst(anItem);
       return getFirst().getItem();
-    } else if (anIndex == (this.size(first))){
+    } else if (anIndex == (this.sizeRecursive(first))){
       this.addLast(anItem);
       return getLast().getItem();
     } else {
@@ -168,11 +168,11 @@ public class LinkedList {
   }
 
   public String remove(int anIndex){
-    if (anIndex < 0 || anIndex > this.size(first)){
+    if (anIndex < 0 || anIndex > this.sizeRecursive(first)){
       return null;
     } else if (anIndex == 0){
        return this.removeFirst();
-    } else if (anIndex == (this.size(first)-1)){
+    } else if (anIndex == (this.sizeRecursive(first)-1)){
       return this.removeLast();
     } else {
       String removed = this.get(anIndex);
